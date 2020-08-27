@@ -12,11 +12,12 @@ User Story:	As a person whom wants to try new cuisines but no time to do researc
 API's to be used: Zomato, Edamam 
 
 When selector is set to recipe and search button,
-a random recipe is generated with a link to said recipe.
+a random recipe is generated with a link to said recipe. or Will be displayed in a modal.
 If cuisine parameter is enter, recipe matching said cuisine will be generated. 
 
 When selector is set to restaurant and search button,
 a random restaurant near me is generated with link to said restaurant.
 If cuisine parameter is entered, restaurant matching said cuisine will be generated. 
 
-On an aside, past search results will be saved.   
+On an aside, past search results will be saved. 
+
