@@ -3,7 +3,11 @@
 //toggle switch between restaurant and recipe
 //check box for cuisine parameter, possible an array
 //click func for search
-var cityURL="https://developers.zomato.com/api/v2.1/cities?q=san%20antonio"
+
+/*$("#button").on("click", function(event){
+    event.preventDefault();
+    var citySearch= $("citySearch").val();*/
+var cityURL='https://developers.zomato.com/api/v2.1/cities?q=sanantonio';
 
 $.ajax({
     url: cityURL,
@@ -20,7 +24,7 @@ $.ajax({
 
 
 
-        var cuisinesURL='https://developers.zomato.com/api/v2.1/cuisines?city_id=304';
+        var cuisinesURL='https://developers.zomato.com/api/v2.1/cuisines?city_id='+city;
 
     $.ajax({
         url: cuisinesURL,
@@ -31,21 +35,19 @@ $.ajax({
         }
         
       }).then(function(response) {
-            console.log(response.cuisines[0].cuisine.cuisine_id);
-        
-  
-  
-  
-  
-  
-  
-  
- 
-    
-        
-        var cuisines =(response.cuisines[0].cuisine.cuisine_id)
+            console.log(response)
 
-        var queryURL= 'https://developers.zomato.com/api/v2.1/search?entity_id='+city+'&entity_type=city&cuisines='+cuisines;
+        var american =(response.cuisines[1].cuisine.cuisine_id);
+        var asian = (response.cuisines[2].cuisine.cuisine_id);
+        var middleEastern = (response.cuisines[56].cuisine.cuisine_id);
+        var mexican = (response.cuisines[55].cuisine.cuisine_id);
+        var seafood = (response.cuisines[68].cuisine.cuisine_id);
+        var italian = (response.cuisines[47].cuisine.cuisine_id);
+        var pizza = (response.cuisines[62].cuisine.cuisine_id);
+        var breakfast = (response.cuisines[11].cuisine.cuisine_id);
+        var fastFood = (response.cuisines[33].cuisine.cuisine_id);
+
+        var queryURL= 'https://developers.zomato.com/api/v2.1/search?entity_id='+city+'&entity_type=city&cuisines='+mexican;
 
         $.ajax({
             url: queryURL,
@@ -62,8 +64,9 @@ $.ajax({
   
   
   
-  
+        });
+
     });
-    });
+        
 });
 
