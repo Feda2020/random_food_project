@@ -3,8 +3,7 @@
 //toggle switch between restaurant and recipe
 //check box for cuisine parameter, possible an array
 //click func for search
-
-
+$('.dropdown-trigger').dropdown();
 
 // event listener for dropdown button
 //document.addEventListener('DOMContentLoaded', function() {
@@ -12,7 +11,9 @@
    // var instances = M.Dropdown.init(elems, options);
   // });
 
-$("button").on("click", function(event){
+
+
+  $("button").on("click", function(event){
     event.preventDefault();
     var citySearch= $("#citySearch").val();
 var cityURL='https://developers.zomato.com/api/v2.1/cities?q='+citySearch;
@@ -85,58 +86,59 @@ $.ajax({
 });
 });
 
-let food = "chinese"
-let spoonUrl = "https://api.spoonacular.com/recipes/complexSearch?cuisine=" + food + "&apiKey=16c525231b8e44dab6169ec9d64da6e5"
+//$("button").click(function(recSearch) {
 
-
-
-$.ajax({
-    url: spoonUrl,
-    method: "GET",
+    //if($("cuisine") ) {
+        //let food = $("cuisine".text)
+    //}else{
+        //let cuisine 
+    //}
     
-}).then(function(response){
-    console.log(response.results);
-    let recIndex = Math.floor(Math.random() * 10)
-    //console.log(response.results[recIndex].id);
-    
-    
-    let recId = response.results[recIndex].id;
-    console.log(recId);
-    let recTitle = $("<div>");
-    console.log(response.results[recIndex].title);
-    let recImg = $("<img>");
-    console.log(response.results[recIndex].image);
+    let food = "mexican"
+    let spoonUrl = "https://api.spoonacular.com/recipes/complexSearch?cuisine=" + food + "&apiKey=16c525231b8e44dab6169ec9d64da6e5"
 
 
 
-    let recipeUrl = "https://api.spoonacular.com/recipes/" + recId + "/information?includeNutrition=false&apiKey=16c525231b8e44dab6169ec9d64da6e5"
     $.ajax({
-        url: recipeUrl,
+        url: spoonUrl,
         method: "GET",
         
-    }).then(function(recipe){
-        console.log(recipe);
-
-        for( i= 0; i < (recipe.extendedIngredients).length; i++)
-        console.log(recipe.extendedIngredients[i].originalString);
-
-        let recIng = $("<div>")
-
-
+    }).then(function(response){
+        console.log(response.results);
+        let recIndex = Math.floor(Math.random() * 10)
+        //console.log(response.results[recIndex].id);
         
-        console.log(recipe.instructions);
-        let recIns = ("<div>");
+        
+        let recId = response.results[recIndex].id;
+        console.log(recId);
+        let recTitle = $("<div>");
+        console.log(response.results[recIndex].title);
+        let recImg = $("<img>");
+        console.log(response.results[recIndex].image);
+
+
+
+        let recipeUrl = "https://api.spoonacular.com/recipes/" + recId + "/information?includeNutrition=false&apiKey=16c525231b8e44dab6169ec9d64da6e5"
+        $.ajax({
+            url: recipeUrl,
+            method: "GET",
+            
+        }).then(function(recipe){
+            console.log(recipe);
+
+            for( i= 0; i < (recipe.extendedIngredients).length; i++)
+            console.log(recipe.extendedIngredients[i].originalString);
+
+            let recIng = $("<div>")
+
+
+            
+            console.log(recipe.instructions);
+            let recIns = ("<div>");
+        })
+
     })
-
-    
-
-    
-    
-    
-
-
-
-})
+//})
 
 
 
