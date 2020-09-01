@@ -4,6 +4,11 @@
 //check box for cuisine parameter, possible an array
 //click func for search
 
+// event listener for dropdown button
+//document.addEventListener('DOMContentLoaded', function() {
+    //var elems = document.querySelectorAll('.dropdown-trigger');
+   // var instances = M.Dropdown.init(elems, options);
+  // });
 
 $("button").on("click", function(event){
     event.preventDefault();
