@@ -5,7 +5,7 @@
 //click func for search
 
 
-let food = "mexican"
+let food = "chinese"
 let spoonUrl = "https://api.spoonacular.com/recipes/complexSearch?cuisine=" + food + "&apiKey=16c525231b8e44dab6169ec9d64da6e5"
 
 
@@ -22,17 +22,37 @@ $.ajax({
     
     let recId = response.results[recIndex].id;
     console.log(recId);
-    let recTitle = response.results[recIndex].title;
-    console.log(recTitle);
-    let recImg = response.results[recIndex].image;
-    console.log(recImg);
+    let recTitle = $("<div>");
+    console.log(response.results[recIndex].title);
+    let recImg = $("<img>");
+    console.log(response.results[recIndex].image);
 
-    //console.log(recTitle);
+
+
+    let recipeUrl = "https://api.spoonacular.com/recipes/" + recId + "/information?includeNutrition=false&apiKey=16c525231b8e44dab6169ec9d64da6e5"
+    $.ajax({
+        url: recipeUrl,
+        method: "GET",
+        
+    }).then(function(recipe){
+        console.log(recipe);
+
+        for( i= 0; i < (recipe.extendedIngredients).length; i++)
+        console.log(recipe.extendedIngredients[i].originalString);
+
+        let recIng = $("<div>")
+
+
+        
+        console.log(recipe.instructions);
+        let recIns = ("<div>");
+    })
+
     
-    //recTitle.text(JSON.stringify(response.results[recIndex].title))
-    //var questIndex = Math.floor(Math.random() * questLog.length);
-    //displayQuest = questLog[questIndex];
-    //questionEl.innerText = displayQuest.q;
+
+    
+    
+    
 
 
 
