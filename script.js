@@ -7,15 +7,16 @@
 
 
 // event listener for dropdown button
-//document.addEventListener('DOMContentLoaded', function() {
+//document.addEventListener('DOMContentLoaded', function(event) {
+    //event.preventDefault();
     //var elems = document.querySelectorAll('.dropdown-trigger');
-   // var instances = M.Dropdown.init(elems, options);
-  // });
-
-$("button").on("click", function(event){
-    event.preventDefault();
-    var citySearch= $("#citySearch").val();
-var cityURL='https://developers.zomato.com/api/v2.1/cities?q='+citySearch;
+    //var instances = M.Dropdown.init(elems);
+   //});
+  
+//$("button").on("click", function(event){
+    //event.preventDefault();
+    //var citySearch= $("#citySearch").val();
+var cityURL='https://developers.zomato.com/api/v2.1/cities?q=sanantonio';
 
 $.ajax({
     url: cityURL,
@@ -83,7 +84,7 @@ $.ajax({
     });
         
 });
-});
+//});
 
 let food = "chinese"
 let spoonUrl = "https://api.spoonacular.com/recipes/complexSearch?cuisine=" + food + "&apiKey=16c525231b8e44dab6169ec9d64da6e5"
