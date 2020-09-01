@@ -18,7 +18,7 @@ $.ajax({
     }
     
   }).then(function(response) {
-        //console.log(response.location_suggestions[0].id);
+        
   
         var city= (response.location_suggestions[0].id)
 
@@ -35,7 +35,7 @@ $.ajax({
         }
         
       }).then(function(response) {
-            //console.log(response)
+           
 
         var american =(response.cuisines[1].cuisine.cuisine_id);
         var asian = (response.cuisines[2].cuisine.cuisine_id);
@@ -63,6 +63,7 @@ $.ajax({
                 console.log(response.restaurants[randomRestaurant].restaurant.featured_image);
                 console.log(response.restaurants[randomRestaurant].restaurant.menu_url);
                 console.log(response.restaurants[randomRestaurant].restaurant.location.address);
+                console.log(response.restaurants[randomRestaurant].restaurant.phone_numbers);
                 
 
   
