@@ -4,6 +4,8 @@
 //check box for cuisine parameter, possible an array
 //click func for search
 
+
+
 // event listener for dropdown button
 //document.addEventListener('DOMContentLoaded', function() {
     //var elems = document.querySelectorAll('.dropdown-trigger');
@@ -157,4 +159,5 @@ $.ajax({
     //need to figure out year parameters
     //need a for loop to cycle though and produce number of articles selected
     
+
 
