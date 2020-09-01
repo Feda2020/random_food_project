@@ -4,10 +4,10 @@
 //check box for cuisine parameter, possible an array
 //click func for search
 
-/*$("#button").on("click", function(event){
+$("button").on("click", function(event){
     event.preventDefault();
-    var citySearch= $("citySearch").val();*/
-var cityURL='https://developers.zomato.com/api/v2.1/cities?q=sanantonio';
+    var citySearch= $("#citySearch").val();
+var cityURL='https://developers.zomato.com/api/v2.1/cities?q='+citySearch;
 
 $.ajax({
     url: cityURL,
@@ -18,7 +18,7 @@ $.ajax({
     }
     
   }).then(function(response) {
-        console.log(response.location_suggestions[0].id);
+        //console.log(response.location_suggestions[0].id);
   
         var city= (response.location_suggestions[0].id)
 
@@ -35,7 +35,7 @@ $.ajax({
         }
         
       }).then(function(response) {
-            console.log(response)
+            //console.log(response)
 
         var american =(response.cuisines[1].cuisine.cuisine_id);
         var asian = (response.cuisines[2].cuisine.cuisine_id);
@@ -47,7 +47,7 @@ $.ajax({
         var breakfast = (response.cuisines[11].cuisine.cuisine_id);
         var fastFood = (response.cuisines[33].cuisine.cuisine_id);
 
-        var queryURL= 'https://developers.zomato.com/api/v2.1/search?entity_id='+city+'&entity_type=city&cuisines='+mexican;
+        var queryURL= 'https://developers.zomato.com/api/v2.1/search?entity_id='+city+'&entity_type=city&cuisines='+breakfast;
 
         $.ajax({
             url: queryURL,
@@ -58,8 +58,13 @@ $.ajax({
                 }
     
                 }).then(function(response) {
-                console.log(response);
-  
+                    var randomRestaurant =Math.floor(Math.random() * 19)
+                console.log(response.restaurants[randomRestaurant].restaurant.name);
+                console.log(response.restaurants[randomRestaurant].restaurant.featured_image);
+                console.log(response.restaurants[randomRestaurant].restaurant.menu_url);
+                console.log(response.restaurants[randomRestaurant].restaurant.location.address);
+                
+
   
   
   
@@ -69,4 +74,4 @@ $.ajax({
     });
         
 });
-
+});
