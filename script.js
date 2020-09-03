@@ -4,6 +4,7 @@
 //check box for cuisine parameter, possible an array
 //click func for search
 $('.dropdown-trigger').dropdown();
+$(".parallax").parallax();
 
 // event listener for dropdown button
 //document.addEventListener('DOMContentLoaded', function() {
@@ -138,7 +139,9 @@ $.ajax({
         })
 
     })
-//})
+
+   
+//}
 
 
 
