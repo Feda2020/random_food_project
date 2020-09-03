@@ -4,6 +4,7 @@
 //check box for cuisine parameter, possible an array
 //click func for search
 $('.dropdown-trigger').dropdown();
+$(".parallax").parallax();
 
 //Click Function for random 
 $(".restButton").on("click", function (event) {
