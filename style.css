@@ -1,7 +1,6 @@
 .nav-wrapper {
     text-align: center;
-    background-color: cornflowerblue;
-    font-size: 35px
+    background-color: teal
 }
 .restCol {
     text-align: center;
@@ -20,6 +19,24 @@
 .city{
     text-align: center;
 }
+
+.appTitle {
+font-size: 35px;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+color: cornsilk
+}
+
+.appDes {
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+    color: sandybrown;
+}
+
+body {
+    background-color: slategray;
+}
+
 .dataRender{
     margin-top: 20px;
 }
+
