@@ -86,17 +86,17 @@ $.ajax({
 });
 });
 
-//$("button").click(function(recSearch) {
-
+$(".btnRec").click(function() {
+    event.preventDefault();
     //if($("cuisine") ) {
         //let food = $("cuisine".text)
     //}else{
-        //let cuisine 
+        //let food = "mexican"
     //}
     
-    let food = "mexican"
+    let food = "indian"
     let spoonUrl = "https://api.spoonacular.com/recipes/complexSearch?cuisine=" + food + "&apiKey=16c525231b8e44dab6169ec9d64da6e5"
-
+    
 
 
     $.ajax({
@@ -106,14 +106,21 @@ $.ajax({
     }).then(function(response){
         console.log(response.results);
         let recIndex = Math.floor(Math.random() * 10)
-        //console.log(response.results[recIndex].id);
+        console.log(response.results[recIndex].id);
         
         
         let recId = response.results[recIndex].id;
         console.log(recId);
+        
         let recTitle = $("<div>");
+        recTitle.text(response.results[recIndex].title);
+        recTitle.css({"color": "red", "font-size":"30px"})
+        $(".dataRender").append(recTitle);
         console.log(response.results[recIndex].title);
+        
         let recImg = $("<img>");
+        recImg.attr("src", response.results[recIndex].image);
+        $(".dataRender").append(recImg);
         console.log(response.results[recIndex].image);
 
 
@@ -126,19 +133,26 @@ $.ajax({
         }).then(function(recipe){
             console.log(recipe);
 
-            for( i= 0; i < (recipe.extendedIngredients).length; i++)
+            for( i= 0; i < (recipe.extendedIngredients).length; i++){
             console.log(recipe.extendedIngredients[i].originalString);
-
-            let recIng = $("<div>")
-
-
             
+            let recIng = $("<div>")
+            recIng.text(recipe.extendedIngredients[i].originalString);
+            recIng.css({"color": "red", "font-size": "14px"});
+            $(".dataRender").append(recIng);
+            }
+
             console.log(recipe.instructions);
             let recIns = ("<div>");
+            recIns.text(recipe.instructions);
+            recIns.css({"color": "red", "font-size": "12px"});
+           $(".dataRender").append(recIns);
+        
+        
+        
         })
-
     })
-//})
+})
 
 
 
@@ -146,14 +160,7 @@ $.ajax({
 
 
 
-//$("#searchBtn").on("click", function(){
-
-    //let keyWord = $("#searchTerm").val();
-    //let f1 = $("#startYear").val();
-    //let f2 = $("#endYear").val();
-    //let amount = $("#numberOfRecords").val();
-    //let queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keyWord + "&begin_date=" + f1 + "&end_date=" + f2 + "&api-key=aoVtwYPwDHAehwCglsYlXc4zmWRkeH6u";
-    
+  
     
     //need a var for queryURL
     //need to get a handle on the key word for searching
