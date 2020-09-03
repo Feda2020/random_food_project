@@ -19,6 +19,7 @@
 .city{
     text-align: center;
 }
+
 .appTitle {
 font-size: 35px;
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -34,3 +35,8 @@ color: cornsilk
 body {
     background-color: slategray;
 }
+
+.dataRender{
+    margin-top: 20px;
+}
+
