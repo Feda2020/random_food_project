@@ -244,15 +244,13 @@ $(".btnRec").click(function () {
 
         let recTitle = $("<div>");
         recTitle.text(response.results[recIndex].title);
-        recTitle.css({
-            "color": "red",
-            "font-size": "30px"
-        })
-        $(".dataRender").append(recTitle);
+        recTitle.css({"color": "sandybrown", "font-size":"30px", "margin-top":"5px"});
+        $(".dataRender").html(recTitle);
         console.log(response.results[recIndex].title);
 
         let recImg = $("<img>");
         recImg.attr("src", response.results[recIndex].image);
+        recImg.css({"border-style":"solid", "border-color":"teal", "border-width":"8px", "margin-top":"5px"})
         $(".dataRender").append(recImg);
         console.log(response.results[recIndex].image);
 
@@ -266,29 +264,22 @@ $(".btnRec").click(function () {
         }).then(function (recipe) {
             console.log(recipe);
 
-            for (i = 0; i < (recipe.extendedIngredients).length; i++) {
-                console.log(recipe.extendedIngredients[i].originalString);
-
-                let recIng = $("<div>")
-                recIng.text(recipe.extendedIngredients[i].originalString);
-                recIng.css({
-                    "color": "red",
-                    "font-size": "14px"
-                });
-                $(".dataRender").append(recIng);
+            for( i= 0; i < (recipe.extendedIngredients).length; i++){
+            console.log(recipe.extendedIngredients[i].originalString);
+            
+            let recIng = $("<div>")
+            recIng.text(recipe.extendedIngredients[i].originalString);
+            recIng.css({"color": "sandybrown", "font-size": "14px"});
+            $(".dataRender").append(recIng);
             }
 
             console.log(recipe.instructions);
-            let recIns = ("<div>");
+            let recIns = $("<div>");
             recIns.text(recipe.instructions);
-            recIns.css({
-                "color": "red",
-                "font-size": "12px"
-            });
-            $(".dataRender").append(recIns);
-
-
-
+            recIns.css({"color": "sandybrown", "font-size": "12px", "margin-top":"10px"});
+           $(".dataRender").append(recIns);
+            
+      
         })
     })
 
@@ -301,11 +292,3 @@ $(".btnRec").click(function () {
 
 
 
-
-
-
-//need a var for queryURL
-//need to get a handle on the key word for searching
-//handleon date range
-//need to figure out year parameters
-//need a for loop to cycle though and produce number of articles selected
