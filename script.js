@@ -171,12 +171,13 @@ $(".btnRec").click(function() {
         
         let recTitle = $("<div>");
         recTitle.text(response.results[recIndex].title);
-        recTitle.css({"color": "red", "font-size":"30px"})
+        recTitle.css({"color": "sandybrown", "font-size":"30px", "margin-top":"5px"});
         $(".dataRender").append(recTitle);
         console.log(response.results[recIndex].title);
         
         let recImg = $("<img>");
         recImg.attr("src", response.results[recIndex].image);
+        recImg.css({"border-style":"solid", "border-color":"teal", "border-width":"8px", "margin-top":"5px"})
         $(".dataRender").append(recImg);
         console.log(response.results[recIndex].image);
 
@@ -195,18 +196,18 @@ $(".btnRec").click(function() {
             
             let recIng = $("<div>")
             recIng.text(recipe.extendedIngredients[i].originalString);
-            recIng.css({"color": "red", "font-size": "14px"});
+            recIng.css({"color": "sandybrown", "font-size": "14px"});
             $(".dataRender").append(recIng);
             }
 
             console.log(recipe.instructions);
-            let recIns = ("<div>");
+            let recIns = $("<div>");
             recIns.text(recipe.instructions);
-            recIns.css({"color": "red", "font-size": "12px"});
+            recIns.css({"color": "sandybrown", "font-size": "12px", "margin-top":"10px"});
            $(".dataRender").append(recIns);
+            
         
-        
-        
+            
         })
     })
 
