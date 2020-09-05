@@ -172,7 +172,7 @@ $(".btnRec").click(function() {
         let recTitle = $("<div>");
         recTitle.text(response.results[recIndex].title);
         recTitle.css({"color": "sandybrown", "font-size":"30px", "margin-top":"5px"});
-        $(".dataRender").append(recTitle);
+        $(".dataRender").html(recTitle);
         console.log(response.results[recIndex].title);
         
         let recImg = $("<img>");
