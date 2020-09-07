@@ -3,8 +3,12 @@
 //toggle switch between restaurant and recipe
 //check box for cuisine parameter, possible an array
 //click func for search
+
 $('.dropdown-trigger').dropdown();
 $(".parallax").parallax();
+
+
+
 
 //Click Function for random restaurant by cuisine
 $(".restButton").on("click", function (event) {
@@ -104,7 +108,10 @@ $(".restButton").on("click", function (event) {
                 console.log(response.restaurants[randomRestaurant].restaurant.menu_url);
                 console.log(response.restaurants[randomRestaurant].restaurant.location.address);
                 console.log(response.restaurants[randomRestaurant].restaurant.phone_numbers);
-
+                
+                
+                let key = "save"
+                localStorage.setItem(key, restMenu);
 
 
             });
@@ -205,6 +212,9 @@ $(".btnRest").on("click", function (event) {
             console.log(response.restaurants[randRest].restaurant.location.address);
             console.log(response.restaurants[randRest].restaurant.phone_numbers);
 
+            let key = "save"
+            localStorage.setItem(key, restMenu);
+
         });
 
 
@@ -217,11 +227,7 @@ $(".btnRest").on("click", function (event) {
 
 $(".btnRec").click(function () {
     event.preventDefault();
-    //if($("cuisine") ) {
-    //let food = $("cuisine".text)
-    //}else{
-    //let food = "mexican"
-    //}
+    
 
     let food = "indian"
 
@@ -279,8 +285,17 @@ $(".btnRec").click(function () {
             recIns.css({"color": "sandybrown", "font-size": "12px", "margin-top":"10px"});
            $(".dataRender").append(recIns);
             
-      
+            const titles = JSON.parse(localStorage.getItem("titles")) || [];
+            titles.push(recTitle.text())
+            let key = "titles"
+            localStorage.setItem(key,JSON.stringify(titles)); 
+            for( i = 0; i < titles.length; i++) {
+                let item = $("<p>");
+                item.text(titles[i]);
+                $(".history").append(item);
+            }
         })
+
     })
 
 })
