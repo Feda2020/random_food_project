@@ -76,11 +76,11 @@ $(".restButton").on("click", function (event) {
                 let restIMG = $('<img>');
                 restIMG.attr('src', response.restaurants[randomRestaurant].restaurant.featured_image);
                 restIMG.css({
-                    "height":"200px",
-                    "border-style":"solid",
-                    "border-color":"teal",
-                    "border-width":"8px",
-                    "margin-top":"5px"
+                    "height": "200px",
+                    "border-style": "solid",
+                    "border-color": "teal",
+                    "border-width": "8px",
+                    "margin-top": "5px"
                 });
                 $(".dataRender").append(restIMG);
 
@@ -102,30 +102,18 @@ $(".restButton").on("click", function (event) {
                 });
                 $(".dataRender").append(restPhone);
 
-                let restMenu = $('<a href=>')
-                restMenu.text(response.restaurants[randomRestaurant].restaurant.menu_url);
-                restMenu.css({
-                    'color': 'white',
-                    'font-size': '20px',
-                    'color': 'sandybrown'
-                });
+                let restMenu = `<a href=${response.restaurants[randomRestaurant].restaurant.menu_url}>Checkout This Restaurant's Menu/Page on Zomato</a> `;
+                
                 $(".dataRender").append(restMenu);
 
-                console.log(response.restaurants[randomRestaurant].restaurant.name);
-                console.log(response.restaurants[randomRestaurant].restaurant.featured_image);
-                console.log(response.restaurants[randomRestaurant].restaurant.menu_url);
-                console.log(response.restaurants[randomRestaurant].restaurant.location.address);
-                console.log(response.restaurants[randomRestaurant].restaurant.phone_numbers);
+                //Saving to local storage
+                let savedNameRandom = response.restaurants[randomRestaurant].restaurant.name;
+                localStorage.setItem("restaurant", savedNameRandom);
 
-            const titles = JSON.parse(localStorage.getItem("titles")) || [];
-            titles.push(restName.text())
-            let key = "titles"
-            localStorage.setItem(key,JSON.stringify(titles)); 
-            for( i = 0; i < titles.length; i++) {
-                let item = $("<p>");
-                item.text(titles[i]);
-                $(".history").append(item);
-                }
+                var restaurant = localStorage.getItem("restaurant");
+                var restEl = `<div>${restaurant}</div>`;
+                $(".history").prepend(restEl);
+
 
             });
 
@@ -193,10 +181,10 @@ $(".btnRest").on("click", function (event) {
             restIMG.attr('src', response.restaurants[randRest].restaurant.featured_image);
             restIMG.css({
                 'height': '200',
-                'border-style':'solid',
-                'border-color':'teal',
-                'border-width':'8px',
-                'margin-top':'5px'
+                'border-style': 'solid',
+                'border-color': 'teal',
+                'border-width': '8px',
+                'margin-top': '5px'
             });
             $(".dataRender").append(restIMG);
 
@@ -218,31 +206,17 @@ $(".btnRest").on("click", function (event) {
             });
             $(".dataRender").append(restPhone);
 
-            let restMenu = $('<a href= src=>');
-            restMenu.text(response.restaurants[randRest].restaurant.menu_url);
-            restMenu.css({
-                'color': 'white',
-                'font-size': '20px',
-                'color': 'sandybrown'
-            });
+            let restMenu = `<a href=${response.restaurants[randRest].restaurant.menu_url}>Checkout This Restaurant's Menu/Page on Zomato</a> `;
+            
             $(".dataRender").append(restMenu);
 
-            console.log(response.restaurants[randRest].restaurant.name);
-            console.log(response.restaurants[randRest].restaurant.featured_image);
-            console.log(response.restaurants[randRest].restaurant.menu_url);
-            console.log(response.restaurants[randRest].restaurant.location.address);
-            console.log(response.restaurants[randRest].restaurant.phone_numbers);
+            //saving to local storage
+            let savedNameByCuisine = response.restaurants[randRest].restaurant.name;
+            localStorage.setItem("restaurant", savedNameByCuisine);
 
-            const titles = JSON.parse(localStorage.getItem("titles")) || [];
-            titles.push(restName.text())
-            let key = "titles"
-            localStorage.setItem(key,JSON.stringify(titles)); 
-            for( i = 0; i < titles.length; i++) {
-                let item = $("<p>");
-                item.text(titles[i]);
-                $(".history").append(item);
-                }
-           
+            var restaurant = localStorage.getItem("restaurant");
+            var restEl = `<div>${restaurant}</div>`;
+            $(".history").prepend(restEl);
 
         });
     });
@@ -251,9 +225,9 @@ $(".btnRest").on("click", function (event) {
 
 $(".btnRec").click(function () {
     event.preventDefault();
-    
-    let cuisine = ["indian","chinese","mexican","itailian","american", "bbq"]
-    
+
+    let cuisine = ["indian", "chinese", "mexican", "itailian", "american", "bbq"]
+
     function recCui() {
         var food = Math.floor(Math.random() * 5)
 
@@ -280,13 +254,22 @@ $(".btnRec").click(function () {
 
         let recTitle = $("<div>");
         recTitle.text(response.results[recIndex].title);
-        recTitle.css({"color": "sandybrown", "font-size":"30px", "margin-top":"5px"});
+        recTitle.css({
+            "color": "sandybrown",
+            "font-size": "30px",
+            "margin-top": "5px"
+        });
         $(".dataRender").html(recTitle);
         console.log(response.results[recIndex].title);
 
         let recImg = $("<img>");
         recImg.attr("src", response.results[recIndex].image);
-        recImg.css({"border-style":"solid", "border-color":"teal", "border-width":"8px", "margin-top":"5px"})
+        recImg.css({
+            "border-style": "solid",
+            "border-color": "teal",
+            "border-width": "8px",
+            "margin-top": "5px"
+        })
         $(".dataRender").append(recImg);
         console.log(response.results[recIndex].image);
 
@@ -300,30 +283,36 @@ $(".btnRec").click(function () {
         }).then(function (recipe) {
             console.log(recipe);
 
-            for( i= 0; i < (recipe.extendedIngredients).length; i++){
-            console.log(recipe.extendedIngredients[i].originalString);
-            
-            let recIng = $("<div>")
-            recIng.text(recipe.extendedIngredients[i].originalString);
-            recIng.css({"color": "sandybrown", "font-size": "14px"});
-            $(".dataRender").append(recIng);
+            for (i = 0; i < (recipe.extendedIngredients).length; i++) {
+                console.log(recipe.extendedIngredients[i].originalString);
+
+                let recIng = $("<div>")
+                recIng.text(recipe.extendedIngredients[i].originalString);
+                recIng.css({
+                    "color": "sandybrown",
+                    "font-size": "14px"
+                });
+                $(".dataRender").append(recIng);
             }
 
             console.log(recipe.instructions);
             let recIns = $("<div>");
             recIns.text(recipe.instructions);
-            recIns.css({"color": "sandybrown", "font-size": "12px", "margin-top":"10px"});
-           $(".dataRender").append(recIns);
-            
-            const titles = JSON.parse(localStorage.getItem("titles")) || [];
-            titles.push(recTitle.text())
-            let key = "titles"
-            localStorage.setItem(key,JSON.stringify(titles)); 
-            for( i = 0; i < titles.length; i++) {
-                let item = $("<p>");
-                item.text(titles[i]);
-                $(".history").append(item);
-            }
+            recIns.css({
+                "color": "sandybrown",
+                "font-size": "12px",
+                "margin-top": "10px"
+            });
+            $(".dataRender").append(recIns);
+
+            //Saving to local storage
+            let savedNameByCuisine = response.results[recIndex].title;
+            localStorage.setItem("restaurant", savedNameByCuisine);
+
+            var restaurant = localStorage.getItem("restaurant");
+            var restEl = `<div>${restaurant}</div>`;
+            $(".history").prepend(restEl);
+
         })
 
     })
@@ -332,14 +321,15 @@ $(".btnRec").click(function () {
 
 $(".pure-menu-link").click(function () {
     event.preventDefault();
-    
-    var choice  = $(".pure-menu-link");
-    function choose(){
-    choice.textContent = this.value;
+
+    var choice = $(".pure-menu-link");
+
+    function choose() {
+        choice.textContent = this.value;
     }
     $(".pure-menu-link").onchange = choose;
-    
-    
+
+
 
     let spoonUrl = "https://api.spoonacular.com/recipes/complexSearch?cuisine=" + choice + "&apiKey=16c525231b8e44dab6169ec9d64da6e5"
 
@@ -359,13 +349,22 @@ $(".pure-menu-link").click(function () {
 
         let recTitle = $("<div>");
         recTitle.text(response.results[recIndex].title);
-        recTitle.css({"color": "sandybrown", "font-size":"30px", "margin-top":"5px"});
+        recTitle.css({
+            "color": "sandybrown",
+            "font-size": "30px",
+            "margin-top": "5px"
+        });
         $(".dataRender").html(recTitle);
         console.log(response.results[recIndex].title);
 
         let recImg = $("<img>");
         recImg.attr("src", response.results[recIndex].image);
-        recImg.css({"border-style":"solid", "border-color":"teal", "border-width":"8px", "margin-top":"5px"})
+        recImg.css({
+            "border-style": "solid",
+            "border-color": "teal",
+            "border-width": "8px",
+            "margin-top": "5px"
+        })
         $(".dataRender").append(recImg);
         console.log(response.results[recIndex].image);
 
@@ -379,26 +378,33 @@ $(".pure-menu-link").click(function () {
         }).then(function (recipe) {
             console.log(recipe);
 
-            for( i= 0; i < (recipe.extendedIngredients).length; i++){
-            console.log(recipe.extendedIngredients[i].originalString);
-            
-            let recIng = $("<div>")
-            recIng.text(recipe.extendedIngredients[i].originalString);
-            recIng.css({"color": "sandybrown", "font-size": "14px"});
-            $(".dataRender").append(recIng);
+            for (i = 0; i < (recipe.extendedIngredients).length; i++) {
+                console.log(recipe.extendedIngredients[i].originalString);
+
+                let recIng = $("<div>")
+                recIng.text(recipe.extendedIngredients[i].originalString);
+                recIng.css({
+                    "color": "sandybrown",
+                    "font-size": "14px"
+                });
+                $(".dataRender").append(recIng);
             }
 
             console.log(recipe.instructions);
             let recIns = $("<div>");
             recIns.text(recipe.instructions);
-            recIns.css({"color": "sandybrown", "font-size": "12px", "margin-top":"10px"});
-           $(".dataRender").append(recIns);
-            
+            recIns.css({
+                "color": "sandybrown",
+                "font-size": "12px",
+                "margin-top": "10px"
+            });
+            $(".dataRender").append(recIns);
+
             const titles = JSON.parse(localStorage.getItem("titles")) || [];
             titles.push(recTitle.text())
             let key = "titles"
-            localStorage.setItem(key,JSON.stringify(titles)); 
-            for( i = 0; i < titles.length; i++) {
+            localStorage.setItem(key, JSON.stringify(titles));
+            for (i = 0; i < titles.length; i++) {
                 let item = $("<p>");
                 item.text(titles[i]);
                 $(".history").append(item);
@@ -408,11 +414,3 @@ $(".pure-menu-link").click(function () {
     })
 
 })
-
-
-
-
-
-
-
-
