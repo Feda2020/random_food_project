@@ -63,15 +63,20 @@ $(".restButton").on("click", function (event) {
                 let restName = $('<div>');
                 restName.css({
                     'color': 'white',
-                    'font-size': '30px'
+                    'font-size': '30px',
+                    'color': 'sandybrown'
                 })
                 restName.text(response.restaurants[randomRestaurant].restaurant.name);
                 $(".dataRender").html(restName);
 
                 let restIMG = $('<img>');
                 restIMG.attr('src', response.restaurants[randomRestaurant].restaurant.featured_image);
-                restIMG.attr({
-                    'height': '200'
+                restIMG.css({
+                    "height":"200px",
+                    "border-style":"solid",
+                    "border-color":"teal",
+                    "border-width":"8px",
+                    "margin-top":"5px"
                 });
                 $(".dataRender").append(restIMG);
 
@@ -79,7 +84,8 @@ $(".restButton").on("click", function (event) {
                 restAddress.text(response.restaurants[randomRestaurant].restaurant.location.address);
                 restAddress.css({
                     'color': 'white',
-                    'font-size': '20px'
+                    'font-size': '20px',
+                    'color': 'sandybrown'
                 });
                 $(".dataRender").append(restAddress);
 
@@ -87,7 +93,8 @@ $(".restButton").on("click", function (event) {
                 restPhone.text(response.restaurants[randomRestaurant].restaurant.phone_numbers);
                 restPhone.css({
                     'color': 'white',
-                    'font-size': '20px'
+                    'font-size': '20px',
+                    'color': 'sandybrown'
                 });
                 $(".dataRender").append(restPhone);
 
@@ -95,7 +102,8 @@ $(".restButton").on("click", function (event) {
                 restMenu.text(response.restaurants[randomRestaurant].restaurant.menu_url);
                 restMenu.css({
                     'color': 'white',
-                    'font-size': '20px'
+                    'font-size': '20px',
+                    'color': 'sandybrown'
                 });
                 $(".dataRender").append(restMenu);
 
@@ -163,15 +171,20 @@ $(".btnRest").on("click", function (event) {
             let restName = $('<div>');
             restName.css({
                 'color': 'white',
-                'font-size': '30px'
+                'font-size': '30px',
+                'color': 'sandybrown'
             })
             restName.text(response.restaurants[randRest].restaurant.name);
             $(".dataRender").html(restName);
 
             let restIMG = $('<img>');
             restIMG.attr('src', response.restaurants[randRest].restaurant.featured_image);
-            restIMG.attr({
-                'height': '200'
+            restIMG.css({
+                'height': '200',
+                'border-style':'solid',
+                'border-color':'teal',
+                'border-width':'8px',
+                'margin-top':'5px'
             });
             $(".dataRender").append(restIMG);
 
@@ -179,7 +192,8 @@ $(".btnRest").on("click", function (event) {
             restAddress.text(response.restaurants[randRest].restaurant.location.address);
             restAddress.css({
                 'color': 'white',
-                'font-size': '20px'
+                'font-size': '20px',
+                'color': 'sandybrown'
             });
             $(".dataRender").append(restAddress);
 
@@ -187,15 +201,17 @@ $(".btnRest").on("click", function (event) {
             restPhone.text(response.restaurants[randRest].restaurant.phone_numbers);
             restPhone.css({
                 'color': 'white',
-                'font-size': '20px'
+                'font-size': '20px',
+                'color': 'sandybrown'
             });
             $(".dataRender").append(restPhone);
 
-            let restMenu = $('<a href=>')
+            let restMenu = $('<a href= src=>');
             restMenu.text(response.restaurants[randRest].restaurant.menu_url);
             restMenu.css({
                 'color': 'white',
-                'font-size': '20px'
+                'font-size': '20px',
+                'color': 'sandybrown'
             });
             $(".dataRender").append(restMenu);
 
