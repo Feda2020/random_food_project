@@ -244,14 +244,10 @@ $(".btnRec").click(function () {
         method: "GET",
 
     }).then(function (response) {
-        console.log(response.results);
-        let recIndex = Math.floor(Math.random() * 10)
-        console.log(response.results[recIndex].id);
-
-
+        let recIndex = Math.floor(Math.random() * 10);
+       
         let recId = response.results[recIndex].id;
-        console.log(recId);
-
+        
         let recTitle = $("<div>");
         recTitle.text(response.results[recIndex].title);
         recTitle.css({
@@ -260,8 +256,7 @@ $(".btnRec").click(function () {
             "margin-top": "5px"
         });
         $(".dataRender").html(recTitle);
-        console.log(response.results[recIndex].title);
-
+        
         let recImg = $("<img>");
         recImg.attr("src", response.results[recIndex].image);
         recImg.css({
@@ -271,31 +266,22 @@ $(".btnRec").click(function () {
             "margin-top": "5px"
         })
         $(".dataRender").append(recImg);
-        console.log(response.results[recIndex].image);
-
-
-
+       
         let recipeUrl = "https://api.spoonacular.com/recipes/" + recId + "/information?includeNutrition=false&apiKey=16c525231b8e44dab6169ec9d64da6e5"
         $.ajax({
             url: recipeUrl,
             method: "GET",
 
         }).then(function (recipe) {
-            console.log(recipe);
-
-            for (i = 0; i < (recipe.extendedIngredients).length; i++) {
-                console.log(recipe.extendedIngredients[i].originalString);
-
+            for( i= 0; i < (recipe.extendedIngredients).length; i++){
+                        
                 let recIng = $("<div>")
                 recIng.text(recipe.extendedIngredients[i].originalString);
-                recIng.css({
-                    "color": "sandybrown",
-                    "font-size": "14px"
-                });
+                recIng.css({"color": "sandybrown", "font-size": "14px"});
                 $(".dataRender").append(recIng);
-            }
+                }
 
-            console.log(recipe.instructions);
+            
             let recIns = $("<div>");
             recIns.text(recipe.instructions);
             recIns.css({
@@ -321,15 +307,11 @@ $(".btnRec").click(function () {
 
 $(".pure-menu-link").click(function () {
     event.preventDefault();
+    var choice  = $(this).text();
+    console.log(choice)
 
-    var choice = $(".pure-menu-link");
-
-    function choose() {
-        choice.textContent = this.value;
-    }
-    $(".pure-menu-link").onchange = choose;
-
-
+    
+    
 
     let spoonUrl = "https://api.spoonacular.com/recipes/complexSearch?cuisine=" + choice + "&apiKey=16c525231b8e44dab6169ec9d64da6e5"
 
@@ -400,15 +382,12 @@ $(".pure-menu-link").click(function () {
             });
             $(".dataRender").append(recIns);
 
-            const titles = JSON.parse(localStorage.getItem("titles")) || [];
-            titles.push(recTitle.text())
-            let key = "titles"
-            localStorage.setItem(key, JSON.stringify(titles));
-            for (i = 0; i < titles.length; i++) {
-                let item = $("<p>");
-                item.text(titles[i]);
-                $(".history").append(item);
-            }
+            let savedNameByCuisine = response.results[recIndex].title;
+            localStorage.setItem("restaurant", savedNameByCuisine);
+
+            var restaurant = localStorage.getItem("restaurant");
+            var restEl = `<div>${restaurant}</div>`;
+            $(".history").prepend(restEl);
         })
 
     })
