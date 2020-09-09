@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">        
 </head>
@@ -67,26 +68,43 @@
         <a class="waves-effect waves-light btn-large btnRec"><i class="material-icons right">local_grocery_store</i>Find Me a Recipe!</a>
         <br>
         <br>
-        <a class='dropdown-trigger btn recCuisine' href='#' data-target='dropdown1'>Have a cuisine in mind?  Pick one!</a>
-        <ul id='dropdown1' class='dropdown-content'>
-          <li><a href="#!">American</a></li>
-          <li><a href="#!">Asian</a></li>
-          <li><a href="#!">Mexican</a></li>
-          <li><a href="#!">Seafood</a></li>
-          <li><a href="#!">Italian</a></li>
-        </ul>  
+        <div class="pure-menu pure-menu-horizontal">
+          <ul class="pure-menu-list">
+              <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                  <a href="#" id="menuLink1" class="pure-menu-link recDrop">HAVE A CUISINE IN MIND? PICK ONE!</a>
+                  <ul class="pure-menu-children recList">
+                      <li class="pure-menu-item">
+                          <a href="#" class="pure-menu-link" id="recItem">Indian</a>
+                      </li>
+                      <li class="pure-menu-item">
+                          <a href="#" class="pure-menu-link" id="recItem">Mexican</a>
+                      </li>
+                      <li class="pure-menu-item">
+                          <a href="#" class="pure-menu-link" id="recItem">Italian</a>
+                      </li>
+                      <li class="pure-menu-item">
+                          <a href="#" class="pure-menu-link" id="recItem">Chinese</a>
+                      </li>
+                      <li class="pure-menu-item">
+                          <a href="#" class="pure-menu-link" id="recItem">American</a>
+                      </li>
+                      <li class="pure-menu-item">
+                          <a href="#" class="pure-menu-link" id="recItem">Bbq</a>
+                      </li>
+                  </ul>
+              </li>
+          </ul>
       </div>
-      <div class="row dataRow">
-        <div class="col s2"></div>
-        <div class="col s8 dataRender"></div>
-        <div class="col s2"></div>
+      </div>
+      <div class="row dataRow">        
+        <div class="col s12 dataRender"></div>
       </div>
       <div class="row">
         <div class="col s12">
           <div class="card teal">
             <div class="card-content white-text">
               <span class="card-title">History</span>
-              <p></p>
+              <div class="history"></div>
             </div>
           </div>
         </div>

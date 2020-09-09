@@ -3,8 +3,12 @@
 //toggle switch between restaurant and recipe
 //check box for cuisine parameter, possible an array
 //click func for search
+
 $('.dropdown-trigger').dropdown();
 $(".parallax").parallax();
+
+
+
 
 //Click Function for random restaurant by cuisine
 $(".restButton").on("click", function (event) {
@@ -113,7 +117,15 @@ $(".restButton").on("click", function (event) {
                 console.log(response.restaurants[randomRestaurant].restaurant.location.address);
                 console.log(response.restaurants[randomRestaurant].restaurant.phone_numbers);
 
-
+            const titles = JSON.parse(localStorage.getItem("titles")) || [];
+            titles.push(restName.text())
+            let key = "titles"
+            localStorage.setItem(key,JSON.stringify(titles)); 
+            for( i = 0; i < titles.length; i++) {
+                let item = $("<p>");
+                item.text(titles[i]);
+                $(".history").append(item);
+                }
 
             });
 
@@ -221,28 +233,36 @@ $(".btnRest").on("click", function (event) {
             console.log(response.restaurants[randRest].restaurant.location.address);
             console.log(response.restaurants[randRest].restaurant.phone_numbers);
 
+            const titles = JSON.parse(localStorage.getItem("titles")) || [];
+            titles.push(restName.text())
+            let key = "titles"
+            localStorage.setItem(key,JSON.stringify(titles)); 
+            for( i = 0; i < titles.length; i++) {
+                let item = $("<p>");
+                item.text(titles[i]);
+                $(".history").append(item);
+                }
+           
+
         });
-
-
-
-
-
     });
 });
 
 
 $(".btnRec").click(function () {
     event.preventDefault();
-    //if($("cuisine") ) {
-    //let food = $("cuisine".text)
-    //}else{
-    //let food = "mexican"
-    //}
+    
+    let cuisine = ["indian","chinese","mexican","itailian","american", "bbq"]
+    
+    function recCui() {
+        var food = Math.floor(Math.random() * 5)
 
-    let food = "indian"
+        return food;
+    };
+    var idx = recCui(cuisine.length);
+    var food = [cuisine.idx];
 
     let spoonUrl = "https://api.spoonacular.com/recipes/complexSearch?cuisine=" + food + "&apiKey=16c525231b8e44dab6169ec9d64da6e5"
-
 
 
     $.ajax({
@@ -295,8 +315,96 @@ $(".btnRec").click(function () {
             recIns.css({"color": "sandybrown", "font-size": "12px", "margin-top":"10px"});
            $(".dataRender").append(recIns);
             
-      
+            const titles = JSON.parse(localStorage.getItem("titles")) || [];
+            titles.push(recTitle.text())
+            let key = "titles"
+            localStorage.setItem(key,JSON.stringify(titles)); 
+            for( i = 0; i < titles.length; i++) {
+                let item = $("<p>");
+                item.text(titles[i]);
+                $(".history").append(item);
+            }
         })
+
+    })
+
+})
+
+$(".pure-menu-link").click(function () {
+    event.preventDefault();
+    
+    var choice  = $(".pure-menu-link");
+    function choose(){
+    choice.textContent = this.value;
+    }
+    $(".pure-menu-link").onchange = choose;
+    
+    
+
+    let spoonUrl = "https://api.spoonacular.com/recipes/complexSearch?cuisine=" + choice + "&apiKey=16c525231b8e44dab6169ec9d64da6e5"
+
+
+    $.ajax({
+        url: spoonUrl,
+        method: "GET",
+
+    }).then(function (response) {
+        console.log(response.results);
+        let recIndex = Math.floor(Math.random() * 10)
+        console.log(response.results[recIndex].id);
+
+
+        let recId = response.results[recIndex].id;
+        console.log(recId);
+
+        let recTitle = $("<div>");
+        recTitle.text(response.results[recIndex].title);
+        recTitle.css({"color": "sandybrown", "font-size":"30px", "margin-top":"5px"});
+        $(".dataRender").html(recTitle);
+        console.log(response.results[recIndex].title);
+
+        let recImg = $("<img>");
+        recImg.attr("src", response.results[recIndex].image);
+        recImg.css({"border-style":"solid", "border-color":"teal", "border-width":"8px", "margin-top":"5px"})
+        $(".dataRender").append(recImg);
+        console.log(response.results[recIndex].image);
+
+
+
+        let recipeUrl = "https://api.spoonacular.com/recipes/" + recId + "/information?includeNutrition=false&apiKey=16c525231b8e44dab6169ec9d64da6e5"
+        $.ajax({
+            url: recipeUrl,
+            method: "GET",
+
+        }).then(function (recipe) {
+            console.log(recipe);
+
+            for( i= 0; i < (recipe.extendedIngredients).length; i++){
+            console.log(recipe.extendedIngredients[i].originalString);
+            
+            let recIng = $("<div>")
+            recIng.text(recipe.extendedIngredients[i].originalString);
+            recIng.css({"color": "sandybrown", "font-size": "14px"});
+            $(".dataRender").append(recIng);
+            }
+
+            console.log(recipe.instructions);
+            let recIns = $("<div>");
+            recIns.text(recipe.instructions);
+            recIns.css({"color": "sandybrown", "font-size": "12px", "margin-top":"10px"});
+           $(".dataRender").append(recIns);
+            
+            const titles = JSON.parse(localStorage.getItem("titles")) || [];
+            titles.push(recTitle.text())
+            let key = "titles"
+            localStorage.setItem(key,JSON.stringify(titles)); 
+            for( i = 0; i < titles.length; i++) {
+                let item = $("<p>");
+                item.text(titles[i]);
+                $(".history").append(item);
+            }
+        })
+
     })
 
 })
