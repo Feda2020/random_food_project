@@ -40,5 +40,14 @@ body {
 .dataRender{
     margin-top: 20px;
 }
-
+.pure-menu-item{
+    background-color: lightseagreen;
+    box-shadow: lightslategray;
+}
+#menuLink1{
+    color: white;
+}
+#recItem{
+    color: white;
+}
 
