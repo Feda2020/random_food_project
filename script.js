@@ -270,46 +270,35 @@ $(".btnRec").click(function () {
         method: "GET",
 
     }).then(function (response) {
-        console.log(response.results);
-        let recIndex = Math.floor(Math.random() * 10)
-        console.log(response.results[recIndex].id);
-
-
+        let recIndex = Math.floor(Math.random() * 10);
+       
         let recId = response.results[recIndex].id;
-        console.log(recId);
-
+        
         let recTitle = $("<div>");
         recTitle.text(response.results[recIndex].title);
         recTitle.css({"color": "sandybrown", "font-size":"30px", "margin-top":"5px"});
         $(".dataRender").html(recTitle);
-        console.log(response.results[recIndex].title);
-
+        
         let recImg = $("<img>");
         recImg.attr("src", response.results[recIndex].image);
         recImg.css({"border-style":"solid", "border-color":"teal", "border-width":"8px", "margin-top":"5px"})
         $(".dataRender").append(recImg);
-        console.log(response.results[recIndex].image);
-
-
-
+       
         let recipeUrl = "https://api.spoonacular.com/recipes/" + recId + "/information?includeNutrition=false&apiKey=16c525231b8e44dab6169ec9d64da6e5"
         $.ajax({
             url: recipeUrl,
             method: "GET",
 
         }).then(function (recipe) {
-            console.log(recipe);
-
             for( i= 0; i < (recipe.extendedIngredients).length; i++){
-            console.log(recipe.extendedIngredients[i].originalString);
-            
-            let recIng = $("<div>")
-            recIng.text(recipe.extendedIngredients[i].originalString);
-            recIng.css({"color": "sandybrown", "font-size": "14px"});
-            $(".dataRender").append(recIng);
-            }
+                        
+                let recIng = $("<div>")
+                recIng.text(recipe.extendedIngredients[i].originalString);
+                recIng.css({"color": "sandybrown", "font-size": "14px"});
+                $(".dataRender").append(recIng);
+                }
 
-            console.log(recipe.instructions);
+            
             let recIns = $("<div>");
             recIns.text(recipe.instructions);
             recIns.css({"color": "sandybrown", "font-size": "12px", "margin-top":"10px"});
@@ -332,12 +321,9 @@ $(".btnRec").click(function () {
 
 $(".pure-menu-link").click(function () {
     event.preventDefault();
-    
-    var choice  = $(".pure-menu-link");
-    function choose(){
-    choice.textContent = this.value;
-    }
-    $(".pure-menu-link").onchange = choose;
+    var choice  = $(this).text();
+    console.log(choice)
+
     
     
 
