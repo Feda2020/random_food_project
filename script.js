@@ -102,7 +102,7 @@ $(".restButton").on("click", function (event) {
                 });
                 $(".dataRender").append(restPhone);
 
-                let restMenu = `<a href=${response.restaurants[randomRestaurant].restaurant.menu_url}>Checkout This Restaurant's Menu/Page on Zomato</a> `;
+                let restMenu = `<a class="menuStyle" href=${response.restaurants[randomRestaurant].restaurant.menu_url}>Checkout This Restaurant's Menu/Page on Zomato</a> `;
                 
                 $(".dataRender").append(restMenu);
 
@@ -206,7 +206,7 @@ $(".btnRest").on("click", function (event) {
             });
             $(".dataRender").append(restPhone);
 
-            let restMenu = `<a href=${response.restaurants[randRest].restaurant.menu_url}>Checkout This Restaurant's Menu/Page on Zomato</a> `;
+            let restMenu = `<a class="menuStyle" href=${response.restaurants[randRest].restaurant.menu_url}>Checkout This Restaurant's Menu/Page on Zomato</a> `;
             
             $(".dataRender").append(restMenu);
 

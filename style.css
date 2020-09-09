@@ -38,18 +38,27 @@ body {
     background-color: lightgreen
 }
 
-.dataRender{
+.dataRender {
     margin-top: 20px;
 }
-.pure-menu-item{
+.pure-menu-item {
     background-color: lightseagreen;
     box-shadow: lightslategray;
     
 }
-#menuLink1{
+#menuLink1 {
     color: white;
 }
-#recItem{
+#recItem {
     color: white;
 }
 
+.menuStyle {
+    color:white;
+    font-size: 20px;
+}
+
+.menuStyle:hover {
+    background-color:yellow;
+    color:blue;
+}
