@@ -21,3 +21,7 @@ If cuisine parameter is entered, restaurant matching said cuisine will be genera
 
 On an aside, past search results will be saved. 
 
+# Project Picture
+
+![Random Food Project](./asset/Random_Food_Project.gif);
+
