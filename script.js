@@ -222,6 +222,9 @@ $(".btnRest").on("click", function (event) {
     });
 });
 
+//api calls for recipes
+//randomize cuisine and recipes
+
 
 $(".btnRec").click(function () {
     event.preventDefault();
@@ -308,12 +311,8 @@ $(".btnRec").click(function () {
 $(".pure-menu-link").click(function () {
     event.preventDefault();
     var choice  = $(this).text();
-    console.log(choice)
-
-    
-    
-
-    let spoonUrl = "https://api.spoonacular.com/recipes/complexSearch?cuisine=" + choice + "&apiKey=16c525231b8e44dab6169ec9d64da6e5"
+      
+    let spoonUrl = "https://api.spoonacular.com/recipes/complexSearch?cuisine=" + choice + "&apiKey=7222d79c33ff4733b607254597fb0136"
 
 
     $.ajax({
@@ -352,7 +351,7 @@ $(".pure-menu-link").click(function () {
 
 
 
-        let recipeUrl = "https://api.spoonacular.com/recipes/" + recId + "/information?includeNutrition=false&apiKey=16c525231b8e44dab6169ec9d64da6e5"
+        let recipeUrl = "https://api.spoonacular.com/recipes/" + recId + "/information?includeNutrition=false&apiKey=7222d79c33ff4733b607254597fb0136"
         $.ajax({
             url: recipeUrl,
             method: "GET",
