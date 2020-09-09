@@ -34,7 +34,7 @@ color: cornsilk;
 }
 
 body {
-    background-color: slategray;
+    background-color: gray
 }
 
 .dataRender{
@@ -43,6 +43,7 @@ body {
 .pure-menu-item{
     background-color: lightseagreen;
     box-shadow: lightslategray;
+    
 }
 #menuLink1{
     color: white;
